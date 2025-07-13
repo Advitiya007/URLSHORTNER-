@@ -16,8 +16,10 @@ const staticrouter=express.Router();
 // })
 
 staticrouter.get("/",async(req,res)=>{
-   const URLOBJ= await URLMODEL.find({});
-
+//    const URLOBJ= await URLMODEL.find({});
+if(!req.user) return res.redirect("/login");
+// to change table to only the directories appended by uchange the url obj to that way//
+const URLOBJ= await  URLMODEL.find({createdby:req.user._id})
     res.render("HOMEPAGE",{
         URLOBJ:URLOBJ
     })

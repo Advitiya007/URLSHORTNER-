@@ -13,6 +13,10 @@ const urlschema= new mongoose.Schema({
     clicks:{
         type:Number,
         default:0
+    },
+    createdby:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"user"
     }
 },{timestamps:true});
 

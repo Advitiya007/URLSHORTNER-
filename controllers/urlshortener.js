@@ -32,6 +32,18 @@ async function postshorturl(req, res) {
   await URLMODEL.create({
     shortid: id,
     givenurl: anmy,
+    createdby:req.user._id
+    // recievd from kiddleware req.user=user usse id leli 
+  //   _id: new ObjectId('6873e618edc097b458c2018a'),
+  // shortid: 'U0wSjWpMYGe34ibBZe3xN',
+  // givenurl: 'https://www.youtube.com/watch?v=OWeruyqhiTo&list=PLinedj3B30sDby4Al-i13hQJGQoRQDfPo&index=23',
+  // clicks: 1,
+  // createdby: new ObjectId('6873dfc9c48a7f1c0448c318'),
+  // createdAt: 2025-07-13T17:00:08.968Z,
+  // updatedAt: 2025-07-13T17:00:13.726Z,
+  // __v: 0
+
+
     // clicks:0
   });
   // return res.json({oldurl:anmy,shorturl:newurl});

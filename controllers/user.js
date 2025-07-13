@@ -1,6 +1,7 @@
 import { user } from "../model/user.model.js";
 // if not deualt {}
-
+import { v4 as uuidv4 } from 'uuid';
+import { setuser } from "../service/auth.js";
 async function usersignup(req, res) {
   const { name, email, password } = req.body;
   await user.create({
@@ -14,6 +15,7 @@ return res.render("login",{
   name,
     email,
     password,
+
 })
   return res.render("HOMEPAGE", {
     name,
@@ -32,6 +34,10 @@ if(!useri){
         ms:"INVALID EMAIL OR PASSWORD"
     })
 }
+const sessionId=uuidv4();
+// id to user 
+setuser(sessionId,useri);
+res.cookie("uid",sessionId)
 // login will redirect 
 return res.redirect("/")
 }

@@ -4,6 +4,8 @@ import { mongodbconnect } from "./connection/connection.js";
 import { urlrouter } from "./routes/url.js";
 import { URLMODEL } from "./model/url.model.js";
 import { userrouter } from "./routes/user.js";
+import cookieParser from 'cookie-parser';
+import { restricttologgedinuseronly ,checkauth} from "./middleware/auth.js";
 import path from "path";
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,9 +18,11 @@ app.set("views", path.resolve("./views"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-app.use("/url", urlrouter);
-app.use("/", staticrouter);
+// inline middle url 
+app.use("/url",restricttologgedinuseronly, urlrouter);
+app.use("/", checkauth,staticrouter);
 //this means i made the exp[ress recognize these routes 
 // an dnow i cam define various routes post get using this ]
 app.use("/user", userrouter);
