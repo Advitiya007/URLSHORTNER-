@@ -1,5 +1,6 @@
 import express from "express"
 import { stat } from "fs";
+import { user } from "../model/user.model.js";
 import {URLMODEL} from "../model/url.model.js";
 
 const staticrouter=express.Router();
@@ -20,8 +21,13 @@ staticrouter.get("/",async(req,res)=>{
 if(!req.user) return res.redirect("/login");
 // to change table to only the directories appended by uchange the url obj to that way//
 const URLOBJ= await  URLMODEL.find({createdby:req.user._id})
+const userobj= await user.find({_id:req.user._id})
+
+
+// these re alr plain js obejcts 
     res.render("HOMEPAGE",{
-        URLOBJ:URLOBJ
+        URLOBJ:URLOBJ,
+        userobj
     })
 })
 
