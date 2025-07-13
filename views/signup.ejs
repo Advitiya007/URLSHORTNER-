@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGNUP</title>
+</head>
+<body>
+    THIS IS YOUR SIGNUP FORM
+    WELCOME!
+    <div>
+        <!-- /user chosen as the index + userrouter taht is the express handler
+         es pr hi data jayega render file  
+         static route se -->
+    <form action="/user" method="post">
+        <label for=""> NAME :</label>
+<input type="text" placeholder="JOHN DOE" required name="name" >
+<label for=""> EMAIL:</label>
+<input type="email" placeholder="johndoe@gmail.com" name="email">
+<label for="">PASSWORD:</label>
+<input type="password" name="password" id="">
+<button type="submit">SIGNUP</button>
+</form>
+    </div>
+</body>
+</html>

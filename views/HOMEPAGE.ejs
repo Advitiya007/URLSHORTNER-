@@ -1,0 +1,71 @@
+<!-- conating the main file where input passed -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body{
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>URL SHORTENER</h1>
+    <div>
+    
+
+        <!-- will post to this url es url pr chla jayea  -->
+         <!-- cant go direclyt to this so we  -->
+        <form method="POST" action="/url/shorten">
+            <label>ENTER YOUR ORGINAL URL</label>
+            <input type="text" name="givenurl" placeholder="https://google.com"> 
+            <!-- this should be the sam ea sthe backedn req.body.givurl that is the express handler that is getting this  -->
+             <button type="submit">GENERATE</button>
+<% if (locals.id) { %>
+    <p>
+        HERE IS YOUR SHORT ID GENERATED =
+        <!-- the name has to be written this way because just :shortid was inteferrign in everythinng so neded to change its route name  -->
+        <a href="http://localhost:3000/url/shorten/<%= id %>" target="blank">
+            http://localhost:3000/url/shorten/<%= id %>
+        </a>
+    </p>
+<% } %>
+
+  <%  if(locals.URLOBJ) {%>  
+    <table>
+        <thead>
+            <tr>
+                <th>S.NO</th>
+                <th>ORIGINAL URL</th>
+                <th>SHORT ID</th>
+                <th>CLICKS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% URLOBJ.forEach(function(URL, index) { %>
+                <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= URL.givenurl %></td>
+                    <td><%= URL.shortid %></td>
+                    <td><%= URL.clicks %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+<% } %>
+<div>
+    <!-- u cant use givenurl from the obj if its not created hyet but it has been added -->
+    <!-- <h2>THE NO. OF CLICKS ON THE DIFFERNET URLS 
+    </h2> -->
+
+</div>
+      
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+</head>
+<body>
+    <div>
+        <form action="/user/login" method="post">
+            <label for="">EMAIL</label>
+            <input type="text" name="email" id="">
+            <label for="">PASSWORD:</label>
+            <input type="text" name="password" id="">
+            <button type="submit">LOGIN</button>
+
+            <% if(locals.ms){ %>
+<h3>WRONG PASS</h3>
+          <%   } %>
+        </form>
+    </div>
+</body>
+</html>
