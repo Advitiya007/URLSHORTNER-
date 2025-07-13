@@ -28,16 +28,20 @@ async function userlogin(req, res) {
 const {email,password}=req.body;
 
 const useri =await user.findOne({email,password});
-console.log(useri)
+// console.log(useri)
 if(!useri){
     return res.render("login",{
         ms:"INVALID EMAIL OR PASSWORD"
     })
 }
-const sessionId=uuidv4();
+// const sessionId=uuidv4();
 // id to user 
-setuser(sessionId,useri);
-res.cookie("uid",sessionId)
+// to convert in plain obj
+const useri1=useri.toObject();
+const token =setuser(useri1);
+console.log(token)
+res.cookie("uid",token)
+// res.cookie("uid",sessionId)
 // login will redirect 
 return res.redirect("/")
 }
