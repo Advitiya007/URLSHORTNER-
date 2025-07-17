@@ -14,6 +14,12 @@ const userschema =mongoose.Schema({
     password:{
         type:String,
         require:true,
+    },
+    role:{
+        type:String,
+        require: true,
+        default:"normal"
+// user given normal route so url will be restrtcied to normal only 
     }
 },{timestamps:true})
 

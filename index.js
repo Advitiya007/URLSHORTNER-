@@ -5,7 +5,7 @@ import { urlrouter } from "./routes/url.js";
 import { URLMODEL } from "./model/url.model.js";
 import { userrouter } from "./routes/user.js";
 import cookieParser from 'cookie-parser';
-import { restricttologgedinuseronly ,checkauth} from "./middleware/auth.js";
+import { restricttologgedinuseronly ,checkauth, checkifuserisauthenticated,restricto} from "./middleware/auth.js";
 import path from "path";
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,13 +19,15 @@ app.set("views", path.resolve("./views"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-
+// 25th 
+app.use(checkifuserisauthenticated);
 // inline middle url 
-app.use("/url",restricttologgedinuseronly, urlrouter);
-app.use("/", checkauth,staticrouter);
+// for 25th -- this reducted to ulogge in  url routwr user and chek auth from static
+app.use("/url",restricto(["normal","ADMIN"]),urlrouter);
+app.use("/user", userrouter);
+app.use("/", staticrouter);
 //this means i made the exp[ress recognize these routes 
 // an dnow i cam define various routes post get using this ]
-app.use("/user", userrouter);
 // so this is used as action for post form 
 // aage can be anything (NO)
 // local host 3000 only

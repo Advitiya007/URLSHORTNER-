@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { setuser } from "../service/auth.js";
 async function usersignup(req, res) {
   const { name, email, password } = req.body;
+  
   await user.create({
     name,
     email,
@@ -40,8 +41,12 @@ if(!useri){
 const useri1=useri.toObject();
 const token =setuser(useri1);
 console.log(token)
+// res.cookie("uid",token) 24th vid
+// for 25th not needed token like this 
+// return res.json({ token });
+ 
+// esko check krne ke liye middle ware
 res.cookie("uid",token)
-// res.cookie("uid",sessionId)
 // login will redirect 
 return res.redirect("/")
 }
